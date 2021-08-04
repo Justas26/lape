@@ -109,14 +109,7 @@ print_r($komoda);
     echo '<br>';
     echo '6 uzdavinys';
     echo '<br>';
-    $skaicius =9;
-    $ilgis = 9;
-    for($i=1; $i<=$ilgis; $i++){
-        for($j=1; $j<=$skaicius;$j++){
-                echo "$i * $j = ".$i *$j. "<br>";
-        }
-    }
-       
+   
      echo 'funkcijos';
     echo '<br>';
     echo '1 uzdavinys'; 
