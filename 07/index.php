@@ -22,7 +22,7 @@
     echo '<br>';
     echo '2 uzdavinys';
     foreach(range(0,9) as $i){
-    $masyvas[$i]=rand(0,10);
+    $masyvas[$i]=rand(0,9);
     }
     echo '<pre>';
     print_r($masyvas);
@@ -79,11 +79,12 @@ print_r($komoda);
         $gyvūnas['age']=7; 
         $gyvūnas['name']='pumos';  
         $gyvūnas['description']='Pikti';  
+        
     print_r($gyvūnas);
     echo '<br>';
     echo '5 uzdavinys';
     echo '<br>';
-    $names=['Pinokis','Buratinas','Lolo','Plesrys','Kardadantis','Plius','Cece','Nuodas','Raudonis','Fliperis'];
+    $names=['Pinokis','Buratinas','Lolo','Plesrys','Kardadantis','Pliusas','Cece','Nuodas','Raudonis','Fliperis'];
     $species=['Kengura','Puma','Meska','Liutas','Tigras','Erelis','Muse','Voras','Vezys','Delfinas'];
     $description=['Sokli','Juoda','Megsta medu','Plesrus','Pavalges buana ramus','Plesrus paukstis','Ikyri','Mezga tinkla','Turi ciuptuvus','Mielas'];
     print_r($names);
@@ -92,25 +93,25 @@ print_r($komoda);
     echo '<br>';
     echo 'b uzdavinys';
     echo '<br>';
-        $gyvūnai=[];
-        foreach(range(1,20)as $zinduoliai){
-            foreach(range(1,20)as $plesrunai){
-                
-            }        
-        }
-            
-       /*
-        
-        */
+    $gyvūnai = [];
+    for($i=0; $i<20; $i++){
+        $gyvūnai[$i]['names']=$names[rand(0,count($names)-1)];
+         $gyvūnai[$i]['species']=$species[rand(0,count($species)-1)];
+          $gyvūnai[$i]['age']=rand(0,12);
+           $gyvūnai[$i]['description']=$description[rand(0,count($description)-1)];
+    }
     print_r($gyvūnai);
     echo '<br>';
     echo 'c uzdavinys';
     echo '<br>';
+    for($i=0; $i<count($gyvūnai); $i++){
+        echo $gyvūnai[$i]['names'] ." " .$gyvūnai[$i]['species'] ." " .$gyvūnai[$i]['age'] . " " .$gyvūnai[$i]['description'].'<br>';
+    }
     echo '<br>';
     echo '6 uzdavinys';
     echo '<br>';
-    $skaicius =9;
-    $ilgis = 9;
+    $skaicius =10;
+    $ilgis = 10;
     for($i=1; $i<=$ilgis; $i++){
         for($j=1; $j<=$skaicius;$j++){
                 echo "$i * $j = ".$i *$j. "<br>";
@@ -142,7 +143,7 @@ print_r($komoda);
     }
     echo piReiksmes();
      echo '<br>';
-     echo 'c';
+     echo 'd';
      echo '<br>';
     function sandauga ($sk1,$sk2){    
     $rezultatas=$sk1*$sk2;    
@@ -150,20 +151,26 @@ print_r($komoda);
     }
     echo sandauga(8,5);
      echo '<br>';
-     echo 'd';
-     echo '<br>';
-
-    echo '<br>';
      echo 'e';
      echo '<br>';
-
-      echo '<br>';
+   /* function plotas($R2){
+        function piReiksmes ($pi=3.14159265359){     
+    return round($pi,8);
+        }
+        $Plotas=$pi*$R2;
+         return $plotas;
+    }
+      echo plotas(64);
+      */
+    echo '<br>';
      echo 'f';
      echo '<br>';
 
       echo '<br>';
      echo 'g';
-     echo '<br>'
+     echo '<br>';
+
+     
 
 ?>
     
