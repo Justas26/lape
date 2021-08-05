@@ -129,10 +129,8 @@ print_r($komoda);
     echo '<br>';
     echo 'b';
      echo '<br>';
-     $kintamasis='labas';
-    function tekstas2 ($tekstas2){ 
-    global $kintamasis;     
-    return $kintamasis  .$tekstas2;
+    function tekstas2 ($tekstas2){     
+    return 'labas'  .$tekstas2;
     }
     echo tekstas2(' vakaras kolegos');
     echo '<br>';
@@ -153,23 +151,28 @@ print_r($komoda);
      echo '<br>';
      echo 'e';
      echo '<br>';
-   /* function plotas($R2){
-        function piReiksmes ($pi=3.14159265359){     
-    return round($pi,8);
-        }
-        $Plotas=$pi*$R2;
-         return $plotas;
+    function plotas($R){
+        $Plotas=piReiksmes()*$R*$R;
+         return $Plotas;
     }
       echo plotas(64);
-      */
+    
     echo '<br>';
      echo 'f';
      echo '<br>';
-
+    function ilgis($R){
+        $ilgis=2*piReiksmes()*$R;
+        return $ilgis;
+    }
+    echo ilgis(8);
       echo '<br>';
      echo 'g';
      echo '<br>';
-
+     function info($R){
+         echo 'apskritimo ilgis:'.ilgis($R).'<br>';
+         echo 'apskritimo plotis:'.plotas($R).'<br>';
+     }
+     echo info(10);
      
 
 ?>
