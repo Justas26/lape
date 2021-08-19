@@ -92,10 +92,16 @@ function carSort()
     $data = getData();
     $arr = json_decode(file_get_contents("./data.txt"), 1);
     $allCars = [];
-    foreach ($allCars as $sellCars) {
-        foreach ($allCars as $unsellCars) {
-            $allCars[$sellCars][$unsellCars] = setData($data);
+    $sellCars = [];
+    $unsellCars = [];
+    foreach ($arr as &$car) {
+        if ($car['status'] == 'Parduota') {
+            $sellCars[] = $car;
+            $allCars[] = $sellCars;
+        } else {
+            $unsellCars[] = $car;
+            $allCars[] = $unsellCars;
         }
     }
-    return (var_dump($allCars));
+    print_r($allCars);
 }

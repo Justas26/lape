@@ -17,11 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['status'])) {
     header("location:./");
     die;
 }
-if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['status'])) {
-    CarSort();
-    header("location:./");
-    die;
-}
 
 //delete
 if ($_SERVER['REQUEST_METHOD'] == "POST" && !isset($_POST['model'])) {
