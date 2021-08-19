@@ -116,8 +116,7 @@ print_r($komoda);
         for($j=1; $j<=$skaicius;$j++){
                 echo "$i * $j = ".$i *$j. "<br>";
         }
-    }
-       
+    }  
      echo 'funkcijos';
     echo '<br>';
     echo '1 uzdavinys'; 
@@ -156,7 +155,6 @@ print_r($komoda);
          return $Plotas;
     }
       echo plotas(64);
-    
     echo '<br>';
      echo 'f';
      echo '<br>';
@@ -172,9 +170,7 @@ print_r($komoda);
          echo 'apskritimo ilgis:'.ilgis($R).'<br>';
          echo 'apskritimo plotis:'.plotas($R).'<br>';
      }
-     echo info(10);
-     
-
+     echo info(10);  
 ?>
     
 </body>
