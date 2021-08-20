@@ -7,6 +7,16 @@ function init()
         file_put_contents("./id.txt", 0);
     }
 }
+function edit()
+{
+    foreach (getData() as $car) {
+        if ($car['id'] == $_GET['id']) {
+
+            return $car;
+        }
+    }
+}
+
 function store()
 {
     $data = getData();
@@ -33,21 +43,23 @@ function getData()
 }
 function setData($arr)
 {
-    return file_put_contents("./data.txt", json_encode($arr));
+    file_put_contents("./data.txt", json_encode($arr));
 }
 function newId()
 {
-    $id = (file_get_contents("./id.txt", 1));
+    $id = file_get_contents("./id.txt", 1);
     $id++;
     file_put_contents("./id.txt", $id);
     return $id;
 }
-function edit()
+function destroy()
 {
-    foreach (getData() as $car) {
-        if ($car['id'] == $_GET['id']) {
-
-            return $car;
+    $data = getData();
+    foreach ($data as $key => $car) {
+        if ($car['id'] == $_POST['id']) {
+            unset($data[$key]);
+            setData($data);
+            return;
         }
     }
 }
@@ -66,17 +78,6 @@ function update()
         }
     }
 }
-function destroy()
-{
-    $data = getData();
-    foreach ($data as $key => $car) {
-        if ($car['id'] == $_POST['id']) {
-            unset($data[$key]);
-            setData($data);
-            return;
-        }
-    }
-}
 function sell()
 {
     $data = getData();
@@ -86,22 +87,4 @@ function sell()
             setData($data);
         }
     }
-}
-function carSort()
-{
-    $data = getData();
-    $arr = json_decode(file_get_contents("./data.txt"), 1);
-    $allCars = [];
-    $sellCars = [];
-    $unsellCars = [];
-    foreach ($arr as &$car) {
-        if ($car['status'] == 'Parduota') {
-            $sellCars[] = $car;
-            $allCars[] = $sellCars;
-        } else {
-            $unsellCars[] = $car;
-            $allCars[] = $unsellCars;
-        }
-    }
-    print_r($allCars);
 }

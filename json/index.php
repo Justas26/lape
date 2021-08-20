@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['id'])) {
             <th>delete</th>
             <th>status</th>
         </tr>
-        <?php foreach (getData() as $car) {  ?>
+        <?php foreach (getData() as $car) { ?>
             <tr>
                 <td> <?= $car['id']  ?> </td>
                 <td> <?= $car['manufacturer']  ?> </td>
@@ -141,6 +141,96 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['id'])) {
                 </td>
             </tr>
         <?php } ?>
+    </table>
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Automobilio gamintojas </th>
+            <th>Automobilio modelis</th>
+            <th>Automobilio pagaminimo metai</th>
+            <th>Automobilio spalva</th>
+            <th>Automobilio rida</th>
+            <th>Automobilio degalai</th>
+            <th>edit</th>
+            <th>delete</th>
+            <th>status</th>
+        </tr>
+        <?php foreach (getData() as $car) {
+            if ($car['status'] === 'Parduota') { ?>
+                <tr>
+                    <td> <?= $car['id']  ?> </td>
+                    <td> <?= $car['manufacturer']  ?> </td>
+                    <td> <?= $car['model']  ?> </td>
+                    <td> <?= $car['year']  ?> </td>
+                    <td> <?= $car['color']  ?> </td>
+                    <td> <?= $car['distance']  ?> </td>
+                    <td> <?= $car['fuel']  ?> </td>
+                    <td><a class="btn btn-success" href="?id=<?= $car['id']  ?>">edit</a></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="id" value="<?= $car['id'] ?>">
+                            <button class="btn btn-danger" type="submit">delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <?php if (!$car['status'] == 'Parduota') { ?>
+                            <form action="" method="post">
+                                <input type="hidden" name="id" value="<?= $car['id'] ?>">
+                                <input type="hidden" name="status" value="<?= $car['status'] ?>">
+                                <button class="btn btn-warning" type="submit">sell</button>
+                            </form>
+                        <?php } else {
+                            echo 'Parduota';
+                        } ?>
+                    </td>
+                </tr>
+        <?php }
+        } ?>
+    </table>
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Automobilio gamintojas </th>
+            <th>Automobilio modelis</th>
+            <th>Automobilio pagaminimo metai</th>
+            <th>Automobilio spalva</th>
+            <th>Automobilio rida</th>
+            <th>Automobilio degalai</th>
+            <th>edit</th>
+            <th>delete</th>
+            <th>status</th>
+        </tr>
+        <?php foreach (getData() as $car) {
+            if ($car['status'] !== 'Parduota') { ?>
+                <tr>
+                    <td> <?= $car['id']  ?> </td>
+                    <td> <?= $car['manufacturer']  ?> </td>
+                    <td> <?= $car['model']  ?> </td>
+                    <td> <?= $car['year']  ?> </td>
+                    <td> <?= $car['color']  ?> </td>
+                    <td> <?= $car['distance']  ?> </td>
+                    <td> <?= $car['fuel']  ?> </td>
+                    <td><a class="btn btn-success" href="?id=<?= $car['id']  ?>">edit</a></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="id" value="<?= $car['id'] ?>">
+                            <button class="btn btn-danger" type="submit">delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <?php if (!$car['status'] == 'Parduota') { ?>
+                            <form action="" method="post">
+                                <input type="hidden" name="id" value="<?= $car['id'] ?>">
+                                <input type="hidden" name="status" value="<?= $car['status'] ?>">
+                                <button class="btn btn-warning" type="submit">sell</button>
+                            </form>
+                        <?php } else {
+                            echo 'Parduota';
+                        } ?>
+                    </td>
+                </tr>
+        <?php }
+        } ?>
     </table>
 </body>
 
