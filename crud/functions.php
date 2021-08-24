@@ -13,6 +13,7 @@ function store()
     $athlete['id'] = $_SESSION['id'];
     $athlete['name'] = $_POST['name'];
     $athlete['surname'] = $_POST['surname'];
+    $athlete['sport'] = $_POST['sport'];
     $athlete['country'] = $_POST['country'];
     $athlete['gender'] = $_POST['gender'];
     $athlete['victories'] = $_POST['victories'];
@@ -35,6 +36,7 @@ function update()
         if ($athlete['id'] == $_POST['id']) {
             $athlete['name'] = $_POST['name'];
             $athlete['surname'] = $_POST['surname'];
+            $athlete['sport'] = $_POST['sport'];
             $athlete['country'] = $_POST['country'];
             $athlete['gender'] = $_POST['gender'];
             $athlete['victories'] = $_POST['victories'];

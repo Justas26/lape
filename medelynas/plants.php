@@ -1,23 +1,23 @@
 <?php
-include('./db.php');
+include('./uniquePlants.php');
 
 
 
 if (isset($_POST['create'])) {
     store();
-    header("location:./");
+    header("location:./plants.php");
     die;
 }
 
 if (isset($_POST['update'])) {
     update();
-    header("location:./");
+    header("location:./plants.php");
     die;
 }
 
 if (isset($_POST['delete'])) {
     destroy($_POST['delete']);
-    header("location:./");
+    header("location:./plants.php");
     die;
 }
 
@@ -27,6 +27,7 @@ if (isset($_GET['edit'])) {
     $plant = find($_GET['edit']);
     $action = 'update';
 }
+
 
 
 
@@ -68,26 +69,27 @@ if (isset($_GET['edit'])) {
 <body>
 
     <form class="form" action="" method="POST">
+        <a href="./">HOME</a>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Augalo amžius</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="age" value="<?= (isset($plant)) ? $plant['age'] : "" ?>">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Augalo aukštis</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="height" value="<?= (isset($plant)) ? $plant['height'] : "" ?>">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Augalo sveikata</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="health" value="<?= (isset($plant)) ? $plant['health'] : "" ?>">
+            </div>
 
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Augalo pavadinimas</label>
-            <div class="col-sm-4">
-                <input class="form-control" type="text" name="name" value="<?= (isset($plant)) ? $plant['name'] : "" ?>">
-            </div>
         </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Vienmetis</label>
-            <div class="col-sm-4">
-                <input type="checkbox" name="is_yearling">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Kiekis</label>
-            <div class="col-sm-4">
-                <input class="form-control" type="text" name="quantity" value="<?= (isset($plant)) ? $plant['quantity'] : "" ?>">
-            </div>
-
-        </div>
+        <input type="hidden" name="plant_id" value="<?= (isset($_GET['id'])) ? $_GET['id'] : "" ?>">
         <?php if (!isset($plant)) {
             echo '<button class="btn btn-primary" name="create" type="submit">Pridėti augalą</button>';
         } else {
@@ -97,36 +99,41 @@ if (isset($_GET['edit'])) {
 
 
 
-    <table class="table">
+    <table class=" table">
         <tr>
             <th>Id</th>
-            <th>Augalo vardas</th>
-            <th>Augalo rūšis</th>
-            <th>Augalų kiekis</th>
-            <th>Augalai</th>
+            <?php
+            $all = all();
+            if (isset($all->fetch_assoc()['name'])) {
+                echo "  <th>name</th>  ";
+            }
+            ?>
+            <th>Augalo amžius</th>
+            <th>Augalo aukštis</th>
+            <th>Augalo sveikata</th>
             <th>edit</th>
             <th>delete</th>
         </tr>
 
 
-        <?php foreach (allOld() as $plant) {
-            $checked = "";
-            if ($plant['is_yearling']) {
-                $checked = "checked";
-            } ?>
+        <?php foreach (all() as $plant) {
+        ?>
             <tr>
                 <td> <?= $plant['id']  ?> </td>
-                <td> <?= $plant['name']  ?> </td>
+                <?php
+                if (isset($plant['name'])) {
+                    echo "  <td>" . $plant['name'] . "</td>  ";
+                }
+                ?>
+                <td> <?= $plant['age']  ?> </td>
+                <td> <?= $plant['height']  ?> </td>
+                <td> <?= $plant['health']  ?> </td>
                 <td>
-                    <input type="checkbox" name="" id="" <?= $checked ?> disabled>
-                </td>
-                <td> <?= $plant['quantity']  ?> </td>
-                <td><a class="btn btn-primary" href="./plants.php?plant_id=<?= $plant['id']  ?>">augalai</a> </td>
-                <td>
-                    <a class="btn btn-success" href="?edit=<?= $plant['id']  ?>">edit</a>
+                    <a class="btn btn-success" href="?id=<?= $plant['id'] ?>&edit=<?= $plant['id'] ?>">edit</a>
                 </td>
                 <td>
                     <form action="" method="post">
+                        <input type="hidden" name="plant_id" value="<?= $plant['id'] ?>">
                         <button class="btn btn-danger" type="submit" name="delete" value="<?= $plant['id'] ?>">delete</button>
                     </form>
                 </td>

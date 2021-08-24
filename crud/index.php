@@ -138,6 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['id'])) {
             <th>Vardas</th>
             <th>Pavardė</th>
             <th>Šalis</th>
+            <th>Šaka</th>
             <th>Lytis</th>
             <th>Pergalės</th>
             <th>edit</th>
@@ -149,6 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['id'])) {
                 <td> <?= $athlete['name']  ?> </td>
                 <td> <?= $athlete['surname']  ?> </td>
                 <td> <?= $athlete['country']  ?> </td>
+                <td> <?= $athlete['sport']  ?> </td>
                 <td> <?= $athlete['gender']  ?> </td>
                 <td> <?= $athlete['victories']  ?> </td>
                 <td><a class="btn btn-success" href="?id=<?= $athlete['id']  ?>">edit</a></td>
