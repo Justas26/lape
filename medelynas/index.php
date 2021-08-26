@@ -68,7 +68,6 @@ if (isset($_GET['edit'])) {
 <body>
 
     <form class="form" action="" method="POST">
-
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Augalo pavadinimas</label>
             <div class="col-sm-4">
@@ -113,7 +112,10 @@ if (isset($_GET['edit'])) {
             $checked = "";
             if ($plant['is_yearling']) {
                 $checked = "checked";
-            } ?>
+            }
+            // $countId = $plant['id']++;
+
+        ?>
             <tr>
                 <td> <?= $plant['id']  ?> </td>
                 <td> <?= $plant['name']  ?> </td>
@@ -121,7 +123,8 @@ if (isset($_GET['edit'])) {
                     <input type="checkbox" name="" id="" <?= $checked ?> disabled>
                 </td>
                 <td> <?= $plant['quantity']  ?> </td>
-                <td><a class="btn btn-primary" href="./plants.php?plant_id=<?= $plant['id']  ?>">augalai</a> </td>
+                <!-- <td><*/?= $countId ?></td> -->
+                <td><a class="btn btn-primary" href="./plants.php?id=<?= $plant['id']  ?>">augalai</a> </td>
                 <td>
                     <a class="btn btn-success" href="?edit=<?= $plant['id']  ?>">edit</a>
                 </td>

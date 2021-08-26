@@ -5,19 +5,19 @@ include('./uniquePlants.php');
 
 if (isset($_POST['create'])) {
     store();
-    header("location:./plants.php");
+    header("location:./plants.php?id=" . $_POST['plant_id']);
     die;
 }
 
 if (isset($_POST['update'])) {
     update();
-    header("location:./plants.php");
+    header("location:./plants.php?id=" . $_POST['plant_id']);
     die;
 }
 
 if (isset($_POST['delete'])) {
     destroy($_POST['delete']);
-    header("location:./plants.php");
+    header("location:./plants.php?id=" . $_POST['plant_id']);
     die;
 }
 
@@ -116,7 +116,7 @@ if (isset($_GET['edit'])) {
         </tr>
 
 
-        <?php foreach (all() as $plant) {
+        <?php foreach ($all as $plant) {
         ?>
             <tr>
                 <td> <?= $plant['id']  ?> </td>
