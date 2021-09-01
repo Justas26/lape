@@ -25,7 +25,6 @@ function find($id)
 function allOPP()
 {
     $conn = connect();
-    //$sql = "SELECT * from `atletai`";
     if (($_GET['victories'])  == 'ASC') {
         $sql = "SELECT * from `atletai`ORDER BY victories ASC";
     } else {
