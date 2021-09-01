@@ -52,108 +52,110 @@ if (isset($_GET['edit'])) {
             margin: 8px;
             padding: 8px;
         }
+
+        .table {
+            background-color: yellow;
+        }
     </style>
 </head>
 
 <body>
 
     <form class="form" action="" method="POST">
-
-        <form class="form" action="" method="POST">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Sportininko vardas</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" name="name" value="<?= (isset($athlete)) ? $athlete->name : "" ?>">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Sportininko pavardė</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" name="surname" value="<?= (isset($athlete)) ? $athlete->surname : "" ?>">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Sportininko šalis</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" name="country" value="<?= (isset($athlete)) ? $athlete->country : "" ?>">
-                </div>
-
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Sportininko sporto šaka</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" name="sport" value="<?= (isset($athlete)) ? $athlete->sport : "" ?>">
-                </div>
-
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Sportininko lytis</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" name="gender" value="<?= (isset($athlete)) ? $athlete->gender : "" ?>">
-                </div>
-
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Sportininko pergalės</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" name="victories" value="<?= (isset($athlete)) ? $athlete->victories : "" ?>">
-                </div>
-            </div>
-
-            <?php if (!isset($athlete)) {
-                echo '<button class="btn btn-primary" name="create" type="submit">Pridėti sportininką</button>';
-            } else {
-                echo '<button class="btn btn-info" type="submit" name="update" value="' . $athlete->id . '">Atnaujinti sportininką</button>';
-            } ?>
-        </form>
-
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Rūšiavimas</label>
+            <label class="col-sm-2 col-form-label">Sportininko vardas</label>
             <div class="col-sm-4">
-                <form action="" method="GET">
-                    <select name="victories" class="victories">
-                        <option value="DESC">Daug pergalių</option>
-                        <option value="ASC">Mažai pergalių</option>
-                    </select>
-                    <button class="btn btn-info" type="submit">filter</button>
-                </form>
+                <input class="form-control" type="text" name="name" value="<?= (isset($athlete)) ? $athlete->name : "" ?>">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sportininko pavardė</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="surname" value="<?= (isset($athlete)) ? $athlete->surname : "" ?>">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sportininko šalis</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="country" value="<?= (isset($athlete)) ? $athlete->country : "" ?>">
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sportininko sporto šaka</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="sport" value="<?= (isset($athlete)) ? $athlete->sport : "" ?>">
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sportininko lytis</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="gender" value="<?= (isset($athlete)) ? $athlete->gender : "" ?>">
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sportininko pergalės</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="victories" value="<?= (isset($athlete)) ? $athlete->victories : "" ?>">
             </div>
         </div>
 
-        <table class="table">
+        <?php if (!isset($athlete)) {
+            echo '<button class="btn btn-primary" name="create" type="submit">Pridėti sportininką</button>';
+        } else {
+            echo '<button class="btn btn-info" type="submit" name="update" value="' . $athlete->id . '">Atnaujinti sportininką</button>';
+        } ?>
+    </form>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Rūšiavimas</label>
+        <div class="col-sm-4">
+            <form action="" method="GET">
+                <select name="victories" class="victories">
+                    <option value="DESC">Daug pergalių</option>
+                    <option value="ASC">Mažai pergalių</option>
+                </select>
+                <button class="btn btn-info" type="submit">filter</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th> Vardas</th>
+            <th>Pavardė</th>
+            <th>Šalis</th>
+            <th>Šaka</th>
+            <th>Lytis</th>
+            <th>Pergalės</th>
+            <th>edit</th>
+            <th>delete</th>
+        </tr>
+
+
+        <?php foreach (allOPP() as $athlete) {  ?>
             <tr>
-                <th>Id</th>
-                <th> Vardas</th>
-                <th>Pavardė</th>
-                <th>Šalis</th>
-                <th>Šaka</th>
-                <th>Lytis</th>
-                <th>Pergalės</th>
-                <th>edit</th>
-                <th>delete</th>
+                <td> <?= $athlete->id  ?> </td>
+                <td> <?= $athlete->name  ?> </td>
+                <td> <?= $athlete->surname  ?> </td>
+                <td> <?= $athlete->country  ?> </td>
+                <td> <?= $athlete->sport  ?> </td>
+                <td> <?= $athlete->gender  ?> </td>
+                <td> <?= $athlete->victories  ?> </td>
+                <td>
+                    <a class="btn btn-success" href="?edit=<?= $athlete->id  ?>">edit</a>
+                </td>
+                <td>
+                    <form action="" method="post">
+                        <button class="btn btn-danger" type="submit" name="delete" value="<?= $athlete->id ?>">delete</button>
+                    </form>
+                </td>
             </tr>
-
-
-            <?php foreach (allOPP() as $athlete) {  ?>
-                <tr>
-                    <td> <?= $athlete->id  ?> </td>
-                    <td> <?= $athlete->name  ?> </td>
-                    <td> <?= $athlete->surname  ?> </td>
-                    <td> <?= $athlete->country  ?> </td>
-                    <td> <?= $athlete->sport  ?> </td>
-                    <td> <?= $athlete->gender  ?> </td>
-                    <td> <?= $athlete->victories  ?> </td>
-                    <td>
-                        <a class="btn btn-success" href="?edit=<?= $athlete->id  ?>">edit</a>
-                    </td>
-                    <td>
-                        <form action="" method="post">
-                            <button class="btn btn-danger" type="submit" name="delete" value="<?= $athlete->id ?>">delete</button>
-                        </form>
-                    </td>
-                </tr>
-            <?php } ?>
-        </table>
+        <?php } ?>
+    </table>
 </body>
 
 </html>
