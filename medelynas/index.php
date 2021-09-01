@@ -80,13 +80,6 @@ if (isset($_GET['edit'])) {
                 <input type="checkbox" name="is_yearling">
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Kiekis</label>
-            <div class="col-sm-4">
-                <input class="form-control" type="text" name="quantity" value="<?= (isset($plant)) ? $plant['quantity'] : "" ?>">
-            </div>
-
-        </div>
         <?php if (!isset($plant)) {
             echo '<button class="btn btn-primary" name="create" type="submit">Pridėti augalą</button>';
         } else {
@@ -108,12 +101,11 @@ if (isset($_GET['edit'])) {
         </tr>
 
 
-        <?php foreach (allOld() as $plant) {
+        <?php foreach (all() as $plant) {
             $checked = "";
             if ($plant['is_yearling']) {
                 $checked = "checked";
             }
-            // $countId = $plant['id']++;
 
         ?>
             <tr>
@@ -123,7 +115,6 @@ if (isset($_GET['edit'])) {
                     <input type="checkbox" name="" id="" <?= $checked ?> disabled>
                 </td>
                 <td> <?= $plant['quantity']  ?> </td>
-                <!-- <td><*/?= $countId ?></td> -->
                 <td><a class="btn btn-primary" href="./plants.php?id=<?= $plant['id']  ?>">augalai</a> </td>
                 <td>
                     <a class="btn btn-success" href="?edit=<?= $plant['id']  ?>">edit</a>

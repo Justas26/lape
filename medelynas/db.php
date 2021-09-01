@@ -35,7 +35,13 @@ function allOld()
 function all()
 {
     $conn = connect();
-    $sql = "SELECT * from `augalai`";
+    $sql = "SELECT `augalai`.`id`, `name`, `is_yearling`,
+    (SELECT COUNT(*)
+    FROM `unique_plants`
+    WHERE `unique_plants`.`plant_id` = `augalai`.`id`) as 'quantity'
+    FROM `unique_plants` right join `augalai`
+    ON `augalai`.`id` = `unique_plants`.`plant_id`
+    GROUP by `augalai`.`id`";
     $result = $conn->query($sql);
     $conn->close();
     return $result;
@@ -48,7 +54,7 @@ function store()
         $is_yearling = 1;
     }
     $conn = connect();
-    $sql = 'INSERT INTO `augalai`(`id`, `name`, `is_yearling`, `quantity`) VALUES (NULL,"' . $_POST['name'] . '","' . $is_yearling . '","' . $_POST['quantity'] . '")';
+    $sql = 'INSERT INTO `augalai`(`id`, `name`, `is_yearling`) VALUES (NULL,"' . $_POST['name'] . '","' . $is_yearling . '")';
     $conn->query($sql);
     $conn->close();
 }
